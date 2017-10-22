@@ -1,0 +1,147 @@
+/*@import "animations.css";*/
+
+.container {
+
+  background-color: #FFC79B;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+}
+
+#header-banner {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5BC0FF;
+}
+
+#header-nametag {
+  background-color: #CC6135;
+  position: relative;
+  bottom: 10%;
+}
+
+#nametag-name {
+  font-size: 48px;
+  text-align: center;
+}
+
+#nametag-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+#scene-ship {
+  position: absolute;
+  top: 226px;
+  left: 15%;
+  animation: ship-bob 20s ease-in-out infinite;
+}
+
+#scene-waves {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.scene-wave {
+  position: absolute;
+  width: 115%;
+  left: -15%;
+  bottom: -40%;
+  animation: wave-one 20s linear infinite;
+}
+
+@keyframes ship-bob {
+  0% {
+    top: 220px;
+    left: 15%;
+    transform: rotateY(0deg);
+  }
+
+  8.3% {
+    top: 240px;
+  }
+
+  16.6% {
+    top: 220px;
+  }
+
+  25% {
+    top: 240px;
+  }
+
+  33.3% {
+    top: 220px;
+  }
+
+  41.5% {
+    top: 240px;
+  }
+
+  45% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    top: 220px;
+    left: 78%;
+    transform: rotateY(180deg);
+  }
+
+  58.3% {
+    top: 240px;
+  }
+
+  66.6% {
+    top: 220px;
+  }
+
+  75% {
+    top: 240px;
+  }
+
+  83.3% {
+    top: 220px;
+  }
+
+  91.5% {
+    top: 240px;
+  }
+
+  95% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    top: 226px;
+    left: 15%;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes wave-one {
+  0% {
+    left: -15%;
+  }
+
+  50% {
+    left: 0%;
+  }
+
+  100% {
+    left: -15%;
+  }
+}
