@@ -1,8 +1,12 @@
 /*@import "animations.css";*/
+.main {
+  display: flex;
+  justify-content: center;
+  background-color: #FFC79B
+}
 
 .container {
-
-  background-color: #FFC79B;
+  width: 80%;
 }
 
 .header {
@@ -14,7 +18,7 @@
 
 #header-banner {
   position: relative;
-  width: 80%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -40,9 +44,9 @@
 
 #scene-ship {
   position: absolute;
-  top: 226px;
+  top: 220px;
   left: 15%;
-  animation: ship-bob 20s ease-in-out infinite;
+  animation: ship-bob 3s infinite, ship-turn 20s infinite;
 }
 
 #scene-waves {
@@ -67,28 +71,22 @@
 @keyframes ship-bob {
   0% {
     top: 220px;
-    left: 15%;
+  }
+
+  50% {
+    top: 240px;
+  }
+
+  100% {
+    top: 220px;
+  }
+}
+
+@keyframes ship-turn {
+  0% {
     transform: rotateY(0deg);
-  }
-
-  8.3% {
-    top: 240px;
-  }
-
-  16.6% {
-    top: 220px;
-  }
-
-  25% {
-    top: 240px;
-  }
-
-  33.3% {
-    top: 220px;
-  }
-
-  41.5% {
-    top: 240px;
+    left: 15%;
+    animation-timing-function: ease-out;
   }
 
   45% {
@@ -96,29 +94,9 @@
   }
 
   50% {
-    top: 220px;
-    left: 78%;
     transform: rotateY(180deg);
-  }
-
-  58.3% {
-    top: 240px;
-  }
-
-  66.6% {
-    top: 220px;
-  }
-
-  75% {
-    top: 240px;
-  }
-
-  83.3% {
-    top: 220px;
-  }
-
-  91.5% {
-    top: 240px;
+    left: 78%;
+    animation-timing-function: ease-in-out;
   }
 
   95% {
@@ -126,9 +104,9 @@
   }
 
   100% {
-    top: 226px;
-    left: 15%;
     transform: rotateY(0deg);
+    left: 15%;
+    animation-timing-function: ease-in;
   }
 }
 
@@ -144,4 +122,33 @@
   100% {
     left: -15%;
   }
+}
+
+.content-main {
+  display: flex;
+  justify-content: center;
+}
+
+.content-divider {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #FFC79B, #8c8b8b, #FFC79B);
+  background-image: -moz-linear-gradient(left, #FFC79B, #8c8b8b, #FFC79B);
+  background-image: -ms-linear-gradient(left, #FFC79B, #8c8b8b, #FFC79B);
+  background-image: -o-linear-gradient(left, #FFC79B, #8c8b8b, #FFC79B);
+}
+
+.content-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 16px 0 0 0;
+}
+
+.content-menu-item {
+  font-size: 24px;
+}
+
+.content-menu-item:hover {
+  text-shadow: 0 0 24px white;
 }
