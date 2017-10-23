@@ -1,4 +1,6 @@
-/*@import "animations.css";*/
+@import "animations.css";
+@import "fonts.css";
+
 .main {
   display: flex;
   justify-content: center;
@@ -26,20 +28,23 @@
   background-color: #5BC0FF;
 }
 
-#header-nametag {
+.header-nametag {
+  text-align: center;
+  font-family: "Indie Flower", cursive;
   background-color: #CC6135;
   position: relative;
   bottom: 10%;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 5px 12px;
 }
 
 #nametag-name {
-  font-size: 48px;
-  text-align: center;
+  font-size: 1.5em;
 }
 
 #nametag-title {
-  font-size: 36px;
-  text-align: center;
+  font-size: 1.25em;
 }
 
 #scene-ship {
@@ -64,56 +69,8 @@
   position: absolute;
   width: 115%;
   left: -15%;
-  bottom: -40%;
+  top: 196px;
   animation: wave-one 20s linear infinite;
-}
-
-@keyframes ship-bob {
-  0% {
-    top: 220px;
-  }
-  50% {
-    top: 240px;
-  }
-  100% {
-    top: 220px;
-  }
-}
-
-@keyframes ship-turn {
-  0% {
-    transform: rotateY(0deg);
-    left: 15%;
-    animation-timing-function: ease-out;
-  }
-  45% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-    left: 78%;
-    animation-timing-function: ease-in-out;
-  }
-  95% {
-    transform: rotateY(180deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-    left: 15%;
-    animation-timing-function: ease-in;
-  }
-}
-
-@keyframes wave-one {
-  0% {
-    left: -15%;
-  }
-  50% {
-    left: 0%;
-  }
-  100% {
-    left: -15%;
-  }
 }
 
 .content-main {

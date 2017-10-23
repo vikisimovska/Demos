@@ -1,14 +1,49 @@
 @keyframes ship-bob {
   0% {
-    translate (0, 100px);
+    top: 220px;
   }
-
   50% {
-    translate (0, 0);
+    top: 240px;
   }
-
   100% {
-    translate (0, 100px);
+    top: 220px;
   }
+}
 
+@keyframes ship-turn {
+  0% {
+    transform: rotateY(0deg);
+    left: 15%;
+  }
+  5% {
+    animation-timing-function: ease-in-out;
+  }
+  45% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+    left: 75%;
+    animation-timing-function: ease-in-out;
+  }
+  95% {
+    transform: rotateY(180deg);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: rotateY(0deg);
+    left: 15%;
+  }
+}
+
+@keyframes wave-one {
+  0% {
+    left: -15%;
+  }
+  50% {
+    left: 0%;
+  }
+  100% {
+    left: -15%;
+  }
 }
