@@ -95,11 +95,13 @@
 }
 
 .content-menu-item {
-  font-size: 24px;
+  font-size: 1.2em;
+  text-align: center;
   text-shadow: 0 0 24px rgba(0,0,0,0);
   transition: text-shadow 0.25s;
 }
 
 .content-menu-item:hover {
+  font-size: 1.22em;
   text-shadow: 0 0 24px rgba(0,0,0,100);
 }
