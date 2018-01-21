@@ -10,24 +10,30 @@ class Carousel extends Component {
     super(props);
 
     this.state = {
-      slides: ['yellow', 'blue', 'green'],
+      slides: ['black', 'yellow', 'blue', 'green', 'red', 'brown'],
       current: 0,
-      canShift: true
+      next: 0,
+      canShift: true,
+      animClass: ''
     }
 
-    this.viewClasses = ['carousel_pnls--left',
-                        'carousel_pnls--center',
-                        'carousel_pnls--right']
-
     this.shiftPanels = this.shiftPanels.bind(this);
-    this.setCurrent = this.setCurrent.bind(this);
   }
 
-  // NOTE: possible refactor to remove viewClasses
-  componentWillMount() {
-    // As this is the very first time we're building panels,
-    //  only 2 are needed (center, right)
-    this.buildCurrentPanels();
+  // add an event listener for when the slider is done animating
+  componentDidMount() {
+    document
+      .getElementById('carousel_base')
+      .addEventListener('transitionend', (event) => {
+        this.resetSlider();
+      });
+  }
+
+  // clean up that event listener
+  componentWillUnmount() {
+    document
+      .getElementById('carousel_base')
+      .removeEventListener('transitionend');
   }
 
   buildCurrentPanels() {
@@ -35,13 +41,10 @@ class Carousel extends Component {
     let current = this.state.current;
 
     for (let i = -1; i <  LOAD_LIMIT - 1; ++i) {
-      let content;
+      let content = null;
 
-      // NOTE: a less legit but cleaner way is 'if (!this.state.slides[i])' : can be ternary
-      // let content = (this.state.slides[i]) ? <CarouselPanel color={color}/> : null;
-      if (current + i < 0 || current >= this.state.slides.length) {
-        content = null;
-      } else {
+      // if item is within bounds, build it!
+      if (current + i >= 0 || current < this.state.slides.length) {
         let color = this.state.slides[current + i];
         content = <CarouselPanel color={color}/>;
       }
@@ -57,11 +60,74 @@ class Carousel extends Component {
   }
 
   // 1 for going right, -1 for going left
+  setCurrent(shift) {
+    // try shifting what *should* be visible
+    let newCurrent = this.state.current + shift;
+
+    // no shifting out of bounds!
+    if (newCurrent < 0 || newCurrent >= this.state.slides.length) {
+      return false;
+    }
+
+    // this.setState({current: newCurrent});
+    return newCurrent;
+  }
+
+  // 1 for going right, -1 for going left
   shiftPanels(shift) {
+    // prevent clicking too quickly
+    if (this.state.canShift === false) { return; }
+
     let newCurrent = this.setCurrent(shift);
     if (newCurrent === false) { return; }
 
-    // // set up the classes appropriately
+    // change the animclass
+    let animClass = (shift === -1) ?
+                    ' carousel_pnls--left' :
+                    ' carousel_pnls--right';
+    this.setState({
+      animClass,
+      canShift: false,
+      next: newCurrent
+    });
+  }
+
+  resetSlider() {
+    this.setState({
+      current: this.state.next,
+      canShift: true,
+      animClass: ''
+    });
+  }
+
+  render() {
+    let animClass = 'carousel_pnls' + this.state.animClass;
+    return (
+      <div id="carousel_base" className="carousel_base">
+        <div className={animClass}>
+          {this.buildCurrentPanels()}
+        </div>
+        <div className="carousel_btns">
+          <CarouselButton text="Prev"
+                          handleClick={this.shiftPanels}
+                          change={-1}/>
+          <CarouselButton text="Next"
+                          handleClick={this.shiftPanels}
+                          change={1}/>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Carousel;
+
+/* Code below used when maintaining Panel components in an array
+    class member variable (this.panels). It worked and would be
+    better for situations where content is loaded in via AJAX.
+    Additional cacheing solutions, too!
+
+// // set up the classes appropriately
     // if (shift === -1) { // current moves left
     //   if (this.panels.length === 3) { this.panels.pop(); }
 
@@ -87,35 +153,4 @@ class Carousel extends Component {
     //   this.panels.push(newPanel);
     // }
 
-  }
-
-  // 1 for going right, -1 for going left
-  setCurrent(shift) {
-    // try shifting what *should* be visible
-    let newCurrent = this.state.current + shift;
-    if (newCurrent < 0 || newCurrent >= this.state.slides.length) { return false; }
-
-    this.setState({current: newCurrent});
-    return newCurrent;
-  }
-
-  render() {
-    return (
-      <div className="carousel_base">
-        <div className="carousel_pnls">
-          {this.buildCurrentPanels()}
-        </div>
-        <div className="carousel_btns">
-          <CarouselButton text="Prev"
-                          handleClick={this.shiftPanels}
-                          change={-1}/>
-          <CarouselButton text="Next"
-                          handleClick={this.shiftPanels}
-                          change={1}/>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default Carousel;
+*/

@@ -7,8 +7,10 @@ const CarouselButton = (props) => {
   }
 
   return (
-    <div className="cbutton_base" onClick={click}>
-      {props.text}
+    <div >
+      <button className="cbutton_base" onClick={click}>
+        {props.text}
+      </button>
     </div>
   );
 }

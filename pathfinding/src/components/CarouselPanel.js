@@ -3,7 +3,8 @@ import './CarouselPanel.css';
 
 const CarouselPanel = (props) => {
   return (
-    <div className={`cpanel_base cpanel--${props.color}`}>
+    <div className={`cpanel_base`}
+         style={{backgroundColor: `${props.color}`}}>
 
     </div>
   );
