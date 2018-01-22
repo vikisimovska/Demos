@@ -1,6 +1,18 @@
 ##Overview
 I decided to build the carousel in React while on a plane to Hawaii. There is no internet so this could probably use some refactoring. I did it the simplest way I could think of. 
 
+###Installation
+simply clone the repository and run
+
+```
+'npm install'
+```
+
+###Running
+```
+'npm start'
+```
+
 ###Files:
 
 src/components/Carousel
